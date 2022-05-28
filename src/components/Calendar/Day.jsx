@@ -1,19 +1,15 @@
+import React, { useMemo } from "react";
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
-import Cell from "../Cell/Cell";
-import "./Day.scss";
+import Cell from "./Cell";
+
 const Day = ({ day, events = [], emptyColumn = false }) => {
-  const [dayEvents, setDayEvents] = useState([]);
 
-  useEffect(() => {
-    const filteredEvents = events.filter(
-      (event) =>
-        dayjs(event.startTime).format("YY/MM/DD") === day[0].format("YY/MM/DD")
-    );
+  let dayEvents = useMemo(() => events.filter(
+    (event) =>
+      dayjs(event.startTime).format("YY/MM/DD") === day[0].format("YY/MM/DD")
+  ), [events, day])
 
-    setDayEvents(filteredEvents);
-  }, [events]);
-
+ 
   return (
     <>
       {emptyColumn ? (

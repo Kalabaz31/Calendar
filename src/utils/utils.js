@@ -28,11 +28,9 @@ export function getWeek(moveByWeek = 0) {
 
   const daysMatrix = new Array(7).fill([]).map(() => {
     currentDayCount++;
-    let hour;
     let minute = -30;
     return new Array(48).fill(null).map(() => {
       minute = minute + 30;
-      console.log("Minutes : ", minute)
       return dayjs(
         new Date(currentDay.year(), currentDay.month(), currentDayCount, "", minute)
       );

@@ -1,7 +1,6 @@
 import React from "react";
-import "./Week.scss";
 
-import Day from "../Day/Day";
+import Day from "./Day";
 
 const events = [
   {

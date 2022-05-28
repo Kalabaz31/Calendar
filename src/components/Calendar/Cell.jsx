@@ -1,26 +1,14 @@
+import React, { useMemo } from "react";
 import dayjs from "dayjs";
-import React, { useState, useEffect } from "react";
 
-import "./Cell.scss";
 
 const Cell = ({ hour, events = [], emptyCells = false }) => {
-  //   console.log(events);
 
-  // console.log(hour);
-  const [hourEvents, setHourEvents] = useState([]);
-  const [duration, setDuration] = useState(0);
 
-  useEffect(() => {
-    if (events !== null) {
-      const filteredEvents = events.filter(
-        (event) =>
-          dayjs(event.startTime).format("HH:mm") === hour.format("HH:mm")
-      );
-      //   console.log(filteredEvents.length);
+  let hourEvents = useMemo(() => events.filter(
+    (event) => dayjs(event.startTime).format("HH:mm") === hour.format("HH:mm")
+  ), [events, hour])
 
-      setHourEvents(filteredEvents);
-    }
-  }, [events]);
 
   return (
     <>
